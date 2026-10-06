@@ -1,26 +1,86 @@
-# CineStream Hub
+# TV Legal 5 - CineStream Hub
 
-cri um site com esse arquivo: um site site streaming (Tvlagal5) com player. a lista de cainais pode ser alterada ou diaconado pelo adm. cri um visual cinematográfico, cri as categorias.
+Plataforma cinematográfica de streaming ao vivo com player HLS integrado, navegação por categorias, canais favoritos, painel administrativo e suporte nativo para Android TV e smartphones.
 
-This project was built with [Lovable](https://lovable.dev).
+---
 
-**Live app**: https://tvlega5.lovable.app
+## 📺 Principais Funcionalidades
 
-## Build with Lovable
+1. **Player HLS Integrado**:
+   - Transmissões contínuas em formato HLS (.m3u8).
+   - Suporte a seleção de qualidade (Auto / 720p / 1080p).
+   - Modo tela cheia, modo teatro e picture-in-picture.
+   - Navegação por atalhos de teclado (Espaço, F, T, M, setas).
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/2f02c099-99b5-47b3-a8a5-08724057c0dd).
+2. **220 Canais Organizados por Categoria**:
+   - Filmes, Séries VIP, TV Aberta, Esportes, Jornalismo, Animes, Infantil, Música, etc.
+   - Navegação em carrosséis com visualização em Trilhos (estilo Netflix) ou Grade Completa.
+   - Barra deslizante de rolagem customizada e fluida.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+3. **Totalmente Responsivo para Smartphones**:
+   - Logomarcas adaptativas que nunca distorcem ou cortam (`object-contain`).
+   - Botões e controles com área de toque mínima de 40px.
+   - Barra inferior móvel nativa com atalhos para Player, Categorias, Favoritos e Painel ADM.
 
-## Development
+4. **Android TV & APK**:
+   - APK nativo compilado e assinado (`app-release.apk` e `tvlegal5.apk`).
+   - Suporte ao controle remoto da TV (D-pad e botão OK).
+   - Banner Leanback 16:9 oficial para a tela inicial do Android TV e Google TV.
+   - Projeto nativo completo em `tv-legal-5-android-tv.zip`.
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+5. **Painel Administrativo Completo**:
+   - Cadastro de novos canais e categorias.
+   - Edição de nomes, URLs de transmissão e logomarcas.
+   - Pausa e ativação instantânea de canais.
+   - Backup e importação de listas em formato JSON.
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+---
+
+## 🚀 Como Rodar o Projeto Localmente
+
+### Requisitos:
+- Node.js 18+ ou 20+ ou 22+
+- npm
+
+### Instalação:
+```bash
+# 1. Instalar dependências
+npm install
+
+# 2. Iniciar servidor de desenvolvimento
 npm run dev
+
+# 3. Compilar para produção
+npm run build
 ```
+
+---
+
+## 📱 Como Instalar o APK na Android TV
+
+### Método 1: Via ADB
+```bash
+adb connect IP_DA_SUA_TV:5555
+adb install public/app-release.apk
+```
+
+### Método 2: Pelo app "Downloader" na TV
+Digite a URL direta do arquivo APK no app Downloader da sua TV.
+
+---
+
+## 📁 Estrutura de Arquivos
+
+- `src/`
+  - `components/`: Navbar, VideoPlayer, HeroBanner, ChannelCard, CategoryNav, CategoryRow, AdminModal, CastModal, AndroidTVModal, Footer, etc.
+  - `services/`: `supabaseClient.ts` (integração Supabase e fallback de cache local).
+  - `data/`: `initialChannels.json` (banco inicial com 220 canais).
+  - `types/`: `channel.ts` (definições de tipos TypeScript).
+  - `hooks/`: `usePWAInstall.ts` (gerenciador de instalação PWA).
+  - `App.tsx`: Componente central da aplicação.
+  - `index.css`: Estilos globais Tailwind CSS e customizações visuais.
+- `public/`:
+  - `app-release.apk` / `tvlegal5.apk`: APK assinado para Android TV.
+  - `tv-legal-5-android-tv.zip`: Projeto Gradle / Android Studio nativo.
+  - `pwa-192x192.png`, `pwa-512x512.png`: Ícones do aplicativo.
+  - `tv-banner-320x180.png`: Banner de TV Leanback.
